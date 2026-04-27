@@ -6,10 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		B48D60C82F9F39B900BE79AF /* .gitignore in Sources */ = {isa = PBXBuildFile; fileRef = B48D60C72F9F39AD00BE79AF /* .gitignore */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		B48D60B32F9F393200BE79AF /* Project-Aegis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Aegis.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B48D60C72F9F39AD00BE79AF /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = .gitignore; sourceTree = "<group>"; };
@@ -125,7 +121,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B48D60C82F9F39B900BE79AF /* .gitignore in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
