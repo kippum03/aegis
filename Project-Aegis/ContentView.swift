@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var isEmergencyActive = false
     @State private var countdown = 15
+    @State private var timer: Timer?
 
     var body: some View {
         ZStack {
@@ -56,7 +57,7 @@ struct ContentView: View {
                 .multilineTextAlignment(.center)
 
             Button {
-                isEmergencyActive = true
+                startEmergencySession()
             } label: {
                 Text("Start Emergency Session")
                     .font(.headline)
@@ -82,7 +83,7 @@ struct ContentView: View {
                 .multilineTextAlignment(.center)
 
             Button {
-                isEmergencyActive = false
+                cancelEmergencySession()
             } label: {
                 Text("I'm Safe")
                     .font(.headline)
@@ -94,7 +95,7 @@ struct ContentView: View {
             }
 
             Button {
-                // Later: send trusted-contact alert
+                sendAlertNow()
             } label: {
                 Text("Send Alert Now")
                     .font(.headline)
@@ -106,7 +107,7 @@ struct ContentView: View {
             }
 
             Button {
-                // Later: activate loud alarm
+                soundAlarm()
             } label: {
                 Text("Sound Alarm")
                     .font(.headline)
@@ -119,6 +120,44 @@ struct ContentView: View {
                     )
             }
         }
+    }
+
+    private func startEmergencySession() {
+        isEmergencyActive = true
+        countdown = 15
+
+        timer?.invalidate()
+
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            if countdown > 0 {
+                countdown -= 1
+            } else {
+                sendAlertNow()
+            }
+        }
+    }
+
+    private func cancelEmergencySession() {
+        timer?.invalidate()
+        timer = nil
+        countdown = 15
+        isEmergencyActive = false
+    }
+
+    private func sendAlertNow() {
+        timer?.invalidate()
+        timer = nil
+
+        // Later: send trusted-contact alert
+        print("Alert sent to trusted contacts")
+
+        isEmergencyActive = false
+        countdown = 15
+    }
+
+    private func soundAlarm() {
+        // Later: activate loud alarm
+        print("Sound alarm activated")
     }
 }
 
